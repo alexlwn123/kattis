@@ -1,0 +1,13 @@
+import java.util.*;
+public class cold {
+
+	public static void main(String args[]) {
+		Scanner scanner = new Scanner(System.in);
+		int x = Integer.parseInt(scanner.nextLine())
+		int[] ints = scanner.nextLine().split(" ");
+		int x = (int) Arrays.stream(ints)
+						.filter(x -> x < 0)
+						.count();
+		System.out.println(x);
+	}
+}
