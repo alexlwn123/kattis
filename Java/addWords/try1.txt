@@ -1,0 +1,12 @@
+def asd 10
+def twent 20
+calc asd + asd =
+def bar 10
+def programming 10
+calc foo + bar =
+def is 10
+def fun 10
+calc programming - is + fun =
+def fun 1213
+calc programming - is + fun =
+clear

@@ -1,0 +1,37 @@
+import java.util.*;
+public class AlienNumbers {
+
+	public static void main(String[] args) {
+		Scanner input = new Scanner(System.in);
+		int cases = input.nextInt();
+		int currentcase = 0;
+		while(input.hasNextLint()) {
+			String[] ints = input.nextLn().split(" ")
+			int base1 = ints[1].length();
+			int base2 = ints[2].length();
+			char[] system1 = new char[base1];
+			char[] system2 = new char[base2];
+			for(int i = 0; i < base1; i++) {
+				system1[i] = ints[1].charAt(i);
+			}
+			for(int i = 0; i < base2; i++) {
+				system2[i] = ints[2].charAt(i);
+			}
+			int value = 0;
+
+			for(int i = ints[0].length()-1; i >= 0; i--) {
+				value += system1.indexOf(ints[0].charAt(i)) * (Math.pow(base1, i-base1));
+			}
+			String out = "";
+			int places = (int) (Math.log(value) / Math.log(base2));
+			for(j = 0; value > 0; j++) {
+				int currentplace = value % Math.pow(base2, j);
+				out = Charecter.toString(system2[currentplace]) + out;
+				value -= currentplace * Math.pow(base, j);
+				//TODO: convert first10 to new system with divide 
+			}
+			System.out.println("Case: " + currentcase + ": " + out);
+			currentcase++;
+		}
+	}
+}
