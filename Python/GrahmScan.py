@@ -38,14 +38,14 @@ class point:
         self.y = y
     def __lt__(other):
         if self.x == other.x:
-            return if max(self.y, other.y) == self.y, x , y
+            return self.y < other.y
 
         if self.x < other.y:
             return self
         return other
-        if self.x == other.x:
+    if self.x == other.x:
             return
-    def Orientation(B, C):
+    # def Orientation(B, C):
 
 
 if __name__ == "__main__":

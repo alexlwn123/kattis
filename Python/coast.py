@@ -2,10 +2,9 @@ import sys
 
 def main():
     lines = sys.stdin.read().splitlines();
-    line1 = lines[0].split(" ")
-    height = int(line1[0])
-    width = int(line1[1])
     lines = lines[1:]
+    height = len(lines)
+    width = len(lines[0])
     lines.append(width * '0')
     lines.insert(0, width * '0')
     height += 2
@@ -36,7 +35,7 @@ def unionFind(graph, lines):
                 adjcol = j + direction[1]
 
                 if adjrow >= 0 and adjcol >= 0 and adjrow < len(graph) and adjcol < len(graph[i]):
-                    if graph[i][j].land == graph[adjrow][adjcol].land:
+                    if not graph[i][j].land == graph[adjrow][adjcol].land:
                         graph[i][j].neighbors.append(graph[adjrow][adjcol])
 
     graph[0][0].doDFS() #oceans
