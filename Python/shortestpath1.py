@@ -1,4 +1,4 @@
-#Fastest time on Kattis for Python3
+#Fastest time on Kattis for Python3 (11/9/18)
 
 import sys
 from heapq import heappush, heappop
@@ -8,7 +8,6 @@ def main():
     line = sys.stdin.readline().strip()
     while True:
         line = list(map(int, line.split(' ')))
-
         n, m, q, start = line
 
         adj = defaultdict(list)
@@ -25,10 +24,9 @@ def main():
         queue = [(0, start)]
         heappush(queue, (0, start))
 
-
         while len(distances) < n and queue:
 
-            cost, current  = heappop(queue)
+            cost, current = heappop(queue)
             if current in distances and distances[current] <= cost:
                 continue
 
@@ -38,7 +36,7 @@ def main():
                     continue
                 heappush(queue, (cost + val, neighbor))
 
-        for __ in range(q):
+        for _ in range(q):
             dest = int(sys.stdin.readline().strip())
             if dest not in distances:
                 print('Impossible')
