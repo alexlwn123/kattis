@@ -6,4 +6,4 @@ which problems I have completed. From here you can get the prompts and try them 
 
 I organized the problems by language, but I separated the problems that were solved in a "Mock-Competition" setting.
 
-Feel free to learn from (*rip off*) my solutions!
+Feel free to learn from (or rip off) my solutions!
