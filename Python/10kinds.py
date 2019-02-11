@@ -12,7 +12,7 @@ def main():
     uf = [i for i in range(row*col)]
     board = []
     for i in range(row):
-        board.append(input())
+        board.append(map(int, input().split()))
 
     for i in range(row):
         for j in range(col):
