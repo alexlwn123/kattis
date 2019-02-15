@@ -53,7 +53,6 @@ def main():
                     size = len(ob.sets[ob.set_map[line[1]]])
                     print size, sum(ob.sets[ob.set_map[line[1]]])
 
-
         except EOFError:
             break
 
