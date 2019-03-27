@@ -47,7 +47,7 @@ def unionFind(lines):
                             graph[i][j].neighbors.append(graph[adjrow][adjcol])
 
     numstars = 0
-    fog i in range(rows):
+    for i in range(rows):
        for j in range(colls):
 
            if graph[i][j].pix == '-' and not graph[i][j].visited:

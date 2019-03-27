@@ -20,7 +20,6 @@ def main():
 
             adj[u].append((v, w))
 
-
         queue = [(0, start)]
         heappush(queue, (0, start))
 
