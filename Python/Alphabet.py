@@ -10,7 +10,7 @@ def main():
         for j in range(len(line[:i])):
             if line[j] < line[i]:
                 maxchain = max(maxchain, dp[j])
-       
+
         dp[i] += maxchain
         totalmax = max(dp[i], totalmax)
     print(26 - totalmax)
