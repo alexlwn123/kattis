@@ -1,23 +1,19 @@
 #Fastest time on Kattis for Python3 (11/9/18)
-
 import sys
 from heapq import heappush, heappop
-from collections import defaultdict
+from collections import defaultdict, deque
 def main():
-
-    line = sys.stdin.readline().strip()
-    while True:
-        line = list(map(int, line.split(' ')))
-        n, m, q, start = line
+    lines, out = iter(sys.stdin.readlines()), deque()
+    x = next(lines)
+    while x != '0 0 0 0':
+        n, m, q, start = map(int, x.split(' '))
 
         adj = defaultdict(list)
         distances = {}
 
         for _ in range(m):
 
-            line = sys.stdin.readline().strip().split()
-            u, v, w = list(map(int, line))
-
+            u, v, w = map(int, next(lines).split())
             adj[u].append((v, w))
 
         queue = [(0, start)]
@@ -36,20 +32,16 @@ def main():
                 heappush(queue, (cost + val, neighbor))
 
         for _ in range(q):
-            dest = int(sys.stdin.readline().strip())
-            if dest not in distances:
-                print('Impossible')
+            dest = int(next(lines))
+            if dest in distances:
+                out.append(str(distances[dest]))
                 continue
 
-            print(str(distances[dest]))
+            out.append('Impossible')
 
-        line = sys.stdin.readline().strip()
-
-        if line == '0 0 0 0':
-          break
-
-        print
-
+        out.append("")
+        x = next(lines)
+    print('\n'.join(out))
 
 if __name__ == '__main__':
     main()
