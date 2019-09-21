@@ -31,13 +31,10 @@ def main():
     if find(uf, other) != yes:
       off.append(other)
 
-
   if len(off) == 0:
     print('Connected')
   else:
     print('\n'.join(map(str,off)))
-
-
 
 if __name__ == '__main__':
   main()
