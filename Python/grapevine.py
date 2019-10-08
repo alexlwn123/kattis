@@ -1,38 +1,39 @@
 from collections import deque
+import sys
 def main():
-  n, m, d = map(int, input().split())
-  visited = {}
-  graph = {}
+  lines = deque(sys.stdin.readlines())
+  n, m, d = map(int, lines.popleft().strip().split())
+  neighbors = {}
   skep = {}
-  toldfrom = {}
+  seen = {}
   for _ in range(n):
-    line = input().split()
+    line = lines.popleft().strip().split()
     skep[line[0]] = int(line[1])
-    graph[line[0]] = []
-    visited[line[0]] = 0
-    toldfrom[line[0]] = set()
+    neighbors[line[0]] = []
+    seen[line[0]] = False
+
   for _ in range(m):
-    line = input().split()
-    graph[line[0]].append(line[1])
-    graph[line[1]].append(line[0])
+    line = lines.popleft().strip().split()
+    neighbors[line[0]].append(line[1])
+    neighbors[line[1]].append(line[0])
 
   q = deque()
-  q.append(input())
+  q.append(lines.popleft().strip())
   told = set([q[0]])
-  while q:
-    curr = q.popleft()
-    if visited[curr] >= d:
-      break
-    for neighbor in graph[curr]:
-      told.add(neighbor)
-      skep[neighbor] -= 1
-      visited[neighbor] = visited[curr] + 1
-      if skep[neighbor] == 0:
-        q.append(neighbor)
+  seen[q[0]] == True
+  for _ in range(d):
+    temp = []
+    while q:
+      curr = q.popleft()
+      for neighbor in neighbors[curr]:
+        if not seen[neighbor]:
+          told.add(neighbor)
+          skep[neighbor] -= 1
+          if skep[neighbor] == 0:
+            temp.append(neighbor)
+    q = deque(temp)
 
-  total = 0
   print(len(told)-1)
-
 
 if __name__ == '__main__':
   main()
