@@ -1,38 +1,49 @@
-length = int(input())
-nodes = dict()
-for i in range(length):
-    line = input().split(' ')
-    name = line[0][:-1]
-    line = line[1:]
-    nodes[name] = []
-    while len(line) > 0:
-        if line[0] in nodes:
-            nodes[line[0]].append(name)
-            line = line[1:]
-        else:
-            nodes[line[0]] = []
+from sys import stdin
+from collections import defaultdict, deque
+def markdated(name, below, dated):
+  dated[name] = True
 
-top = input()
-queue = [top]
-visited = [top]
-while len(queue) > 0:
-    print(queue[0])
-    visited.append(queue[0])
-    currentlen = len(queue)
-    for child in nodes[queue[0]]:
-        if child not in visited:
-            place = len(queue)
-            for item in subq:
-                if item in nodes[child]:
-                   subq[0], subq[-1] = subq[-1], subq[0]
+  for dep in below[name]:
+    markdated(dep, below, dated)
 
-            visited.append(child)
-            queue.append(child)
-    queue = queue[1:]
+def main():
+  n = int(stdin.readline().strip())
+  above = defaultdict(set)
+  required = {}
+
+  for _ in range(n):
+    line = stdin.readline().strip().split(' ')
+    line[0] = line[0][:-1]
+    required[line[0]] = 0
+    if len(line) == 1:
+      continue
+
+    for word in line[1:]:
+      above[word].add(line[0])
 
 
+  start = stdin.readline().strip()
+  stack = deque([start])
+  visited = set()
 
+  while stack:
+    curr = stack.pop()
+    if curr in visited:
+      continue
+    visited.add(curr)
+    for dep in above[curr]:
+      required[dep] += 1
+      if dep not in visited:
+        stack.append(dep)
 
+  stack = deque([start])
+  while stack:
+    curr = stack.pop()
+    print(curr)
+    for dep in above[curr]:
+      required[dep] -= 1
+      if required[dep] == 0:
+        stack.append(dep)
 
-
-
+if __name__ == '__main__':
+  main()
