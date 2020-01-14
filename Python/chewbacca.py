@@ -1,12 +1,11 @@
 import sys
-
 def find_layer(x, K):
   layer = 0
   while x >= 0:
     x -= K ** layer
     layer += 1
 
-  return [layer-1, x + K**(layer-1)]
+  return (layer-1, x + K**(layer-1))
 
 def main():
   N, K, Q = map(int, sys.stdin.readline().split())
@@ -33,3 +32,4 @@ def main():
 
 if __name__ == '__main__':
   main()
+
