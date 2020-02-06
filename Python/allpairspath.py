@@ -1,41 +1,40 @@
-import sys
-def main():
-  INF = 9999999
-  out = []
-  line = sys.stdin.readline().strip().split(' ')
-  while True:
-    n, m, q = map(int, line)
+INFINITY = 99999999999
 
+while True:
+    n, m, q = map(int, input().split())
     if n == m == q == 0:
-      print('\n'.join(out))
-      break
+        break
 
-    graph = [[INF for _ in range(n)] for _ in range(n)]
+    edges = []
+    dist = [[INFINITY for _ in range(n)] for _ in range(n)]
     for _ in range(m):
-      u, v, w = map(int, sys.stdin.readline().strip().split(' '))
-      graph[u][v] = w
+        u, v, w = map(int, input().split())
+        dist[u][v] = min(w, dist[u][v])
 
     for i in range(n):
-      graph[i][i] = 0
+        dist[i][i] = 0
 
     for k in range(n):
-      for i in range(n):
-        for j in range(n):
-          graph[i][j] = min(graph[i][j], graph[i][k]+ graph[k][j])
+        for i in range(n):
+            for j in range(n):
+                if dist[i][k] >= INFINITY or dist[k][j] >= INFINITY:
+                    continue
+                if dist[i][j] > dist[i][k] + dist[k][j]:
+                    dist[i][j] = dist[i][k] + dist[k][j]
+
+    for k in range(n):
+        for i in range(n):
+            for j in range(n):
+                if dist[j][j] < 0 and dist[k][j] < INFINITY and dist[j][i] < INFINITY:
+                    dist[k][i] = -INFINITY
 
     for _ in range(q):
-      u, v = map(int, sys.stdin.readline().strip().split(' '))
-      if graph[u][u] < 0 or graph[v][v] < 0:
-        out.append('-Infinity')
-      elif graph[u][v] == INF and graph[v][u]:
-        out.append('Impossible')
-      else:
-        out.append(str(min(graph[u][v], graph[v][u])))
-
-    out.append('')
-
-    line = sys.stdin.readline().strip().split(' ')
-    # for l in graph:
-      # out.append(l)
-if __name__ == '__main__':
-  main()
+        a, b = map(int, input().split())
+        c = dist[a][b]
+        if c <= -INFINITY:
+            print('-Infinity')
+        elif c >= INFINITY:
+            print('Impossible')
+        else:
+            print(c)
+    print('')
