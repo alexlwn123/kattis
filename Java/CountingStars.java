@@ -16,8 +16,8 @@ import java.util.*;
 // graph by only adding edges between two '-' cells that are up/down
 // or left/right from one another.
 //
-// Then, we will look at every cell in the map. Every time
-// we find a '-' cell that has not yet been visited by a depth
+    // Then, we will look at every cell in the map. Every time
+                  // we find a '-' cell that has not yet been visited by a depth
 // first search, we will count that as a new star (and increase
 // the number of stars by one).
 //
