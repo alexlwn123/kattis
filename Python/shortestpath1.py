@@ -1,4 +1,3 @@
-#Fastest time on Kattis for Python3 (11/9/18)
 import sys
 from heapq import heappush, heappop
 from collections import defaultdict, deque
@@ -17,7 +16,6 @@ def main():
             adj[u].append((v, w))
 
         queue = [(0, start)]
-        heappush(queue, (0, start))
 
         while len(distances) < n and queue:
 
