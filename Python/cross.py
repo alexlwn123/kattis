@@ -1,5 +1,4 @@
 import sys
-from collections import deque
 def main():
   lines = sys.stdin.read().splitlines()
   board = [x if x == '.' else int(x) for line in lines for x in line]
