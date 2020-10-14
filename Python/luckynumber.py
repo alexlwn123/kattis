@@ -12,9 +12,6 @@ def generate(num, k, MAX):
     generate(nex, k+1, MAX)
 
 
-
-
-
 def main():
   N = int(input())
   global count
@@ -22,9 +19,6 @@ def main():
     generate(i, 1, N)
 
   print(count)
-
-
-  
 
 
 if __name__ == '__main__':
